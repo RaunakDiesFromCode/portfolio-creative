@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+html {
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+}
+
 /* Amiamie Regular */
 @font-face {
   font-family: "Amiamie";
@@ -122,7 +128,7 @@ body {
 }
 
 @utility banner-text-responsive {
-  @apply text-[68px] sm:text-[118px] md:text-[126px] lg:text-[152px] leading-13 sm:leading-20 lg:leading-24;
+  @apply text-[50px] sm:text-[80px] md:text-[90px] lg:text-[130px] leading-13 sm:leading-20 lg:leading-24;
 }
 
 @utility value-text-responsive {
