@@ -10,12 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
     const serviceRefs = useRef([]);
-    const isDesktop = useMediaQuery({ minWidth: "48rem" });
+    const isDesktop = useMediaQuery({ minWidth: "48rem" }); //768px
 
     useGSAP(() => {
-        serviceRefs.current = [];
-        servicesData.forEach((_, index) => {
-            const el = serviceRefs.current[index];
+        serviceRefs.current.forEach((el) => {
             if (!el) return;
 
             gsap.from(el, {
@@ -28,11 +26,7 @@ const Services = () => {
                 ease: "circ.out",
             });
         });
-    }, [servicesData]);
-
-    useGSAP(() => {
-        ScrollTrigger.refresh();
-    });
+    }, []);
 
     return (
         <section id="services" className="min-h-screen bg-black rounded-t-4xl">
@@ -45,9 +39,7 @@ const Services = () => {
             />
             {servicesData.map((service, index) => (
                 <div
-                    ref={(el) => {
-                        serviceRefs.current[index] = el;
-                    }}
+                    ref={(el) => { serviceRefs.current[index] = el; }}
                     key={index}
                     className="sticky px-10 pt-6 pb-12 text-white bg-black border-t-2 border-white/30"
                     style={
@@ -72,16 +64,11 @@ const Services = () => {
                             <div className="flex flex-col gap-2 text-2xl sm:gap-4 lg:text-3xl text-white/80">
                                 {service.items.map((item, itemIndex) => (
                                     <div key={`item-${index}-${itemIndex}`}>
-                                        <h3 className="flex items-center">
+                                        <h3 className="flex">
                                             <span className="mr-12 text-lg text-white/30">
                                                 0{itemIndex + 1}
                                             </span>
-                                            <div>
-                                                {item.title}
-                                                <p className="text-white/60 text-lg">
-                                                    {item.description}
-                                                </p>
-                                            </div>
+                                            {item.title}
                                         </h3>
                                         {itemIndex <
                                             service.items.length - 1 && (
